@@ -1,3 +1,3 @@
 .files
 
-curently i3, urxvt and vim(janus)
+curently i3, urxvt and vim
