@@ -1,3 +1,6 @@
+" Install Vundle via:
+" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"
 set nocompatible       " disable vi compatibility.
 
 filetype off
@@ -58,12 +61,16 @@ set tags=./tags;$HOME  " walk directory tree upto $HOME looking for tags
 
 " Modeline
 set modelines=5      " default numbers of lines to read for modeline instructions
+set modeline
+
 " Backup
 set nowritebackup
 set nobackup
 set directory=/tmp// " prepend(^=) $HOME/.tmp/ to default path; use full path as backup filename(//)
+
 " Buffers
 set hidden           " The current buffer can be put to the background without writing to disk
+
 " Match and search
 set nohlsearch         " highlight search
 set ignorecase       " Do case in sensitive matching with
@@ -256,3 +263,9 @@ set guioptions-=M
 " this makes sure that shell scripts are highlighted
 " as bash scripts and not sh scripts
 let g:is_posix = 1
+
+" CtrlP Add tags
+" let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript', 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
+let g:ctrlp_extensions = ['tag']
+set wig+=ATS
+
