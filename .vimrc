@@ -1,6 +1,3 @@
-" Install Vundle via:
-" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-"
 set nocompatible       " disable vi compatibility.
 
 filetype off
@@ -23,6 +20,7 @@ Plugin 'repeat.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'L9'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tComment'
 Plugin 'scrooloose/syntastic'
 Plugin 'flazz/vim-colorschemes'
@@ -32,7 +30,7 @@ Plugin 'fholgado/minibufexpl.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'torrancew/vim-openscad'
 Plugin 'benmills/vimux'
-Plugin 'brookhong/cscope.vim'
+Plugin 'burnettk/vim-angular'
 
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
@@ -61,16 +59,12 @@ set tags=./tags;$HOME  " walk directory tree upto $HOME looking for tags
 
 " Modeline
 set modelines=5      " default numbers of lines to read for modeline instructions
-set modeline
-
 " Backup
 set nowritebackup
 set nobackup
 set directory=/tmp// " prepend(^=) $HOME/.tmp/ to default path; use full path as backup filename(//)
-
 " Buffers
 set hidden           " The current buffer can be put to the background without writing to disk
-
 " Match and search
 set nohlsearch         " highlight search
 set ignorecase       " Do case in sensitive matching with
@@ -92,9 +86,9 @@ set wildmode=longest,list " At command line, complete longest common string, the
 
 set backspace=indent,eol,start " more powerful backspacing
 
-set tabstop=8     " Set the default tabstop
-set softtabstop=8
-set shiftwidth=8  " Set the default shift width for indents
+set tabstop=2     " Set the default tabstop
+set softtabstop=2
+set shiftwidth=2  " Set the default shift width for indents
 set expandtab     " Make tabs into spaces (set by tabstop)
 set shiftround    " makes indenting a multiple of shiftwidth
 set smarttab      " Smarter tab levels
@@ -150,7 +144,8 @@ set splitright
 " Gui Options " {{{
 if has("gui_running")
   "set guifont=Courier\ New:h12
-  set guifont=Consolas:h12
+  "set guifont=Consolas:h14
+  set guifont=Source\ Code\ Pro:h12
   set antialias
 endif
 " " }}}
@@ -164,7 +159,7 @@ comm! W exec 'w !sudo tee % > /dev/null' | e!
 au BufRead,BufNewFile {COMMIT_EDITMSG}                                set ft=gitcommit
 
 " Close if only NERDTree left
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Automatically delete trailing DOS-returns and whitespace on file open and
 " write.
@@ -194,9 +189,13 @@ map <C-l> <C-w>l
 ":smap <C-J> <Plug>snipMateNextOrTrigger
 let g:UltiSnipsExpandTrigger="<c-j>"
 
+let g:NERDTreeIgnore=['\.pyc', '\~$']
+let g:NERDTreeChDirMode=2
+let g:NERDTreeMinimalUI=1
 
 "colorscheme grb256
-colorscheme hybrid
+"colorscheme hybrid
+colorscheme codeschool
 inoremap ˙ <C-o>h
 inoremap ∆ <C-o>j
 inoremap ˚ <C-o>k
@@ -212,7 +211,7 @@ let g:airline_theme = 'tomorrow'
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_checkers = ['pylama']
 let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -263,9 +262,3 @@ set guioptions-=M
 " this makes sure that shell scripts are highlighted
 " as bash scripts and not sh scripts
 let g:is_posix = 1
-
-" CtrlP Add tags
-" let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript', 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
-let g:ctrlp_extensions = ['tag']
-set wig+=ATS
-
