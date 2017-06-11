@@ -1,6 +1,3 @@
-" Install Vundle via:
-" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-"
 set nocompatible       " disable vi compatibility.
 
 filetype off
@@ -14,8 +11,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'Valloric/vim-valloric-colorscheme'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
+"Plugin 'garbas/vim-snipmate'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
@@ -23,7 +19,7 @@ Plugin 'fugitive.vim'
 Plugin 'repeat.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'L9'
-Plugin 'vim-airline/vim-airline'
+Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tComment'
 Plugin 'scrooloose/syntastic'
@@ -33,17 +29,12 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'torrancew/vim-openscad'
-Plugin 'benmills/vimux'
-Plugin 'brookhong/cscope.vim'
-Plugin 'rking/ag.vim'
-Plugin 'junegunn/vim-peekaboo'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'burnettk/vim-angular'
+
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
 call vundle#end()
-
 let g:colorscheme_switcher_define_mappings=0
 map <F7> :NextColorScheme<CR>
 map <S-F7> :PrevColorScheme<CR>
@@ -62,22 +53,18 @@ set autoread
 set background=dark
 
 set timeoutlen=250     " Time to wait after ESC (default causes an annoying delay)
-set clipboard+=unnamed " Yanks go on clipboard instead.
+" set clipboard+=unnamed " Yanks go on clipboard instead. Disabled for tmux
 set pastetoggle=<F10>  " toggle between paste and normal: for 'safer' pasting from keyboard
 set tags=./tags;$HOME  " walk directory tree upto $HOME looking for tags
 
 " Modeline
 set modelines=5      " default numbers of lines to read for modeline instructions
-set modeline
-
 " Backup
 set nowritebackup
 set nobackup
 set directory=/tmp// " prepend(^=) $HOME/.tmp/ to default path; use full path as backup filename(//)
-
 " Buffers
 set hidden           " The current buffer can be put to the background without writing to disk
-
 " Match and search
 set nohlsearch         " highlight search
 set ignorecase       " Do case in sensitive matching with
@@ -93,15 +80,15 @@ set formatoptions=tcroqnj
 
 
 set nowrap
-set textwidth=120          " wrap lines by default
-set colorcolumn=+1         " this makes the color after the textwidth column highlighted
+set textwidth=80          " wrap lines by default
+"set colorcolumn=+1        " this makes the color after the textwidth column highlighted
 set wildmode=longest,list " At command line, complete longest common string, then list alternatives.
 
 set backspace=indent,eol,start " more powerful backspacing
 
-set tabstop=8     " Set the default tabstop
-set softtabstop=8
-set shiftwidth=8  " Set the default shift width for indents
+set tabstop=2     " Set the default tabstop
+set softtabstop=2
+set shiftwidth=2  " Set the default shift width for indents
 set expandtab     " Make tabs into spaces (set by tabstop)
 set shiftround    " makes indenting a multiple of shiftwidth
 set smarttab      " Smarter tab levels
@@ -120,7 +107,7 @@ syntax on               " enable syntax
 " "}}}
 
 " Visual "{{{
-set number        " Line numbers off
+set nonumber        " Line numbers off
 set showmatch     " Show matching brackets.
 set matchtime=5   " Bracket blinking.
 set novisualbell  " No blinking
@@ -156,9 +143,9 @@ set splitright
 
 " Gui Options " {{{
 if has("gui_running")
-  " set guifont=Courier\ New:h12
-  set guifont=Powerline\ Consolas:h13
-  " set guifont=Source\ Code\ Pro:h12
+  "set guifont=Courier\ New:h12
+  "set guifont=Consolas:h14
+  set guifont=Source\ Code\ Pro:h12
   set antialias
 endif
 " " }}}
@@ -172,9 +159,7 @@ comm! W exec 'w !sudo tee % > /dev/null' | e!
 au BufRead,BufNewFile {COMMIT_EDITMSG}                                set ft=gitcommit
 
 " Close if only NERDTree left
-let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc$', '\.orig']
-
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Automatically delete trailing DOS-returns and whitespace on file open and
 " write.
@@ -204,17 +189,20 @@ map <C-l> <C-w>l
 ":smap <C-J> <Plug>snipMateNextOrTrigger
 let g:UltiSnipsExpandTrigger="<c-j>"
 
+let g:NERDTreeIgnore=['\.pyc', '\~$']
+let g:NERDTreeChDirMode=2
+let g:NERDTreeMinimalUI=1
 
 "colorscheme grb256
-colorscheme hybrid
-"colorscheme codeschool
+"colorscheme hybrid
+colorscheme codeschool
 inoremap ˙ <C-o>h
 inoremap ∆ <C-o>j
 inoremap ˚ <C-o>k
 inoremap ¬ <C-o>l
 
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'bubblegum'
+let g:airline_theme = 'tomorrow'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                syntastic                                "
@@ -223,13 +211,8 @@ let g:airline_theme = 'bubblegum'
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_python_checkers = ['pylama', 'flake8']
+let g:syntastic_python_checkers = ['pylama']
 let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
-let g:syntastic_python_pylama_args = ''
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = {"mode": "passive", "active_filetypes": [], "passive_filetypes": [] }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              YouCompleteMe                              "
@@ -237,12 +220,7 @@ let g:syntastic_mode_map = {"mode": "passive", "active_filetypes": [], "passive_
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_min_num_identifier_candidate_chars = 4
 let g:ycm_extra_conf_globlist = ['~/repos/*']
-" let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
-let g:ycm_python_binary_path = '/Users/meep/Documents/sane/bin/python'
-if !exists("g:ycm_semantic_triggers")
-  let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers['typescript'] = ['.']
+let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 " let g:ycm_server_use_vim_stdout = 1
 " let g:ycm_server_log_level = 'debug'
 
@@ -250,37 +228,6 @@ nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
 nnoremap <leader>pg :YcmCompleter GoTo<CR>
 nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                              Ag - SilverSearcher                        "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ag_working_path_mode="r" "set search from project root
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                              Cscope                                     "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:cscope_cmd='pycscope'
-
-nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
-nnoremap <leader>l :call ToggleLocationList()<CR>
-
-" s: Find this C symbol
-nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
-" g: Find this definition
-nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
-" d: Find functions called by this function
-nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
-" c: Find functions calling this function
-nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
-" t: Find this text string
-nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
-" e: Find this egrep pattern
-nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
-" f: Find this file
-nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
-" i: Find files #including this file
-nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 
 " EDITOR SETTINGS
 set ignorecase          " case insensitive searching
@@ -315,9 +262,3 @@ set guioptions-=M
 " this makes sure that shell scripts are highlighted
 " as bash scripts and not sh scripts
 let g:is_posix = 1
-
-" CtrlP Add tags
-" let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript', 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
-let g:ctrlp_extensions = ['tag']
-set wig+=ATS
-
