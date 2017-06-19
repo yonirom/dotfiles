@@ -6,7 +6,7 @@ set runtimepath+=~/.vim/bundle/Vundle.vim
 " Plugins " {{{
 call vundle#begin()
 
-Plugin 'gmsrik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Valloric/vim-valloric-colorscheme'
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -31,6 +31,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'torrancew/vim-openscad'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'burnettk/vim-angular'
+Plugin 'editorconfig/editorconfig-vim'
 
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
@@ -195,13 +196,14 @@ let g:NERDTreeMinimalUI=1
 
 "colorscheme grb256
 "colorscheme hybrid
-colorscheme codeschool
+"colorscheme codeschool
+colorscheme molokai
 inoremap ˙ <C-o>h
 inoremap ∆ <C-o>j
 inoremap ˚ <C-o>k
 inoremap ¬ <C-o>l
 
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_theme = 'tomorrow'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -221,6 +223,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_min_num_identifier_candidate_chars = 4
 let g:ycm_extra_conf_globlist = ['~/repos/*']
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
+let g:ycm_confirm_extra_conf = 1
 " let g:ycm_server_use_vim_stdout = 1
 " let g:ycm_server_log_level = 'debug'
 
@@ -228,6 +231,11 @@ nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
 nnoremap <leader>pg :YcmCompleter GoTo<CR>
 nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              editorconfig                               "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " EDITOR SETTINGS
 set ignorecase          " case insensitive searching
