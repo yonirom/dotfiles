@@ -54,7 +54,7 @@ set autoread
 set background=dark
 
 set timeoutlen=250     " Time to wait after ESC (default causes an annoying delay)
-" set clipboard+=unnamed " Yanks go on clipboard instead. Disabled for tmux
+set clipboard+=unnamed " Yanks go on clipboard instead.
 set pastetoggle=<F10>  " toggle between paste and normal: for 'safer' pasting from keyboard
 set tags=./tags;$HOME  " walk directory tree upto $HOME looking for tags
 
@@ -188,7 +188,7 @@ map <C-l> <C-w>l
 
 ":imap <C-J> <Plug>snipMateNextOrTrigger
 ":smap <C-J> <Plug>snipMateNextOrTrigger
-let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsExpandTrigger="<c-Space>"
 
 let g:NERDTreeIgnore=['\.pyc', '\~$']
 let g:NERDTreeChDirMode=2
