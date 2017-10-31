@@ -22,19 +22,22 @@ Plugin 'L9'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tComment'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'rizzatti/dash.vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'fholgado/minibufexpl.vim'
+" Plugin 'fholgado/minibufexpl.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'torrancew/vim-openscad'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'burnettk/vim-angular'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'w0rp/ale'
 
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
+Plugin 'airblade/vim-rooter'
+Plugin 'tehmaze/vim-pythonGotoFile'
 call vundle#end()
 let g:colorscheme_switcher_define_mappings=0
 map <F7> :NextColorScheme<CR>
@@ -67,22 +70,22 @@ set directory=/tmp// " prepend(^=) $HOME/.tmp/ to default path; use full path as
 " Buffers
 set hidden           " The current buffer can be put to the background without writing to disk
 " Match and search
-set nohlsearch         " highlight search
+set hlsearch       " highlight search
 set ignorecase       " Do case in sensitive matching with
 set smartcase        " be sensitive when there's a capital letter
 set incsearch
 " "}}}
 
 " Formatting "{{{
+set formatoptions=tcroqnj
 "set fo+=o " Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
 "set fo-=r " Do not automatically insert a comment leader after an enter
-"set fo-=t " Do no auto-wrap text using textwidth (does not apply to comments)
-set formatoptions=tcroqnj
+set fo-=t " Do no auto-wrap text using textwidth (does not apply to comments)
 
 
 set nowrap
-set textwidth=80          " wrap lines by default
-"set colorcolumn=+1        " this makes the color after the textwidth column highlighted
+set textwidth=100          " wrap lines by default
+set colorcolumn=+1        " this makes the color after the textwidth column highlighted
 set wildmode=longest,list " At command line, complete longest common string, then list alternatives.
 
 set backspace=indent,eol,start " more powerful backspacing
@@ -108,7 +111,9 @@ syntax on               " enable syntax
 " "}}}
 
 " Visual "{{{
-set nonumber        " Line numbers off
+" set nonumber        " Line numbers off
+set number            " Line numbers on
+set relativenumber    " Line numbers relative
 set showmatch     " Show matching brackets.
 set matchtime=5   " Bracket blinking.
 set novisualbell  " No blinking
@@ -205,16 +210,17 @@ inoremap ¬ <C-o>l
 
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'tomorrow'
+let g:airline#extensions#bufferline#enabled = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                syntastic                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_python_checkers = ['pylama']
-let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
+"let g:syntastic_error_symbol = '✗'
+"let g:syntastic_warning_symbol = '⚠'
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_python_checkers = ['pylama']
+"let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              YouCompleteMe                              "
@@ -224,13 +230,14 @@ let g:ycm_min_num_identifier_candidate_chars = 4
 let g:ycm_extra_conf_globlist = ['~/repos/*']
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 let g:ycm_confirm_extra_conf = 1
+let g:ycm_server_python_interpreter = '/usr/bin/python3'
 " let g:ycm_server_use_vim_stdout = 1
 " let g:ycm_server_log_level = 'debug'
 
-nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
-nnoremap <leader>pg :YcmCompleter GoTo<CR>
-nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>z :YcmForceCompileAndDiagnostics<cr>
+nnoremap <leader>x :YcmCompleter GoTo<CR>
+nnoremap <leader>c :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>v :YcmCompleter GoToDeclaration<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              editorconfig                               "
