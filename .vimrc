@@ -38,6 +38,9 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'airblade/vim-rooter'
 Plugin 'tehmaze/vim-pythonGotoFile'
+Plugin 'luochen1990/rainbow'
+Plugin 'ConradIrwin/vim-bracketed-paste'
+
 call vundle#end()
 let g:colorscheme_switcher_define_mappings=0
 map <F7> :NextColorScheme<CR>
@@ -84,7 +87,7 @@ set fo-=t " Do no auto-wrap text using textwidth (does not apply to comments)
 
 
 set nowrap
-set textwidth=100          " wrap lines by default
+set textwidth=160          " wrap lines by default
 set colorcolumn=+1        " this makes the color after the textwidth column highlighted
 set wildmode=longest,list " At command line, complete longest common string, then list alternatives.
 
@@ -166,11 +169,13 @@ au BufRead,BufNewFile {COMMIT_EDITMSG}                                set ft=git
 
 " Close if only NERDTree left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufEnter * lcd %:p:h
 
 " Automatically delete trailing DOS-returns and whitespace on file open and
 " write.
 autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
 
+autocmd FileType python set equalprg=yapf
 
 " Key mappings " {{{
 nnoremap <silent> <LocalLeader>rs :source ~/.vimrc<CR>
@@ -208,9 +213,14 @@ inoremap ∆ <C-o>j
 inoremap ˚ <C-o>k
 inoremap ¬ <C-o>l
 
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'tomorrow'
 let g:airline#extensions#bufferline#enabled = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  ctrl-p                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_max_files = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                syntastic                                "
@@ -221,6 +231,16 @@ let g:airline#extensions#bufferline#enabled = 1
 "let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_python_checkers = ['pylama']
 "let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   ALE                                   "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_linters = { 'python': ['mypy', 'flake8'], }
+let g:ale_python_mypy_options = '-s'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              YouCompleteMe                              "
