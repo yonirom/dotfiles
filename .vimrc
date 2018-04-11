@@ -40,6 +40,8 @@ Plugin 'airblade/vim-rooter'
 Plugin 'tehmaze/vim-pythonGotoFile'
 Plugin 'luochen1990/rainbow'
 Plugin 'ConradIrwin/vim-bracketed-paste'
+Plugin 'nathanalderson/yang.vim'
+Plugin 'mileszs/ack.vim'
 
 call vundle#end()
 let g:colorscheme_switcher_define_mappings=0
@@ -49,7 +51,6 @@ filetype plugin indent on             " Automatically detect file types.
 " " }}}
 
 nmap <F8> :TagbarToggle<CR>
-nmap <F2> :NERDTreeToggle<CR>
 nnoremap // :TComment<CR>
 vnoremap // :TComment<CR>
 
@@ -200,9 +201,12 @@ map <C-l> <C-w>l
 ":smap <C-J> <Plug>snipMateNextOrTrigger
 let g:UltiSnipsExpandTrigger="<c-Space>"
 
-let g:NERDTreeIgnore=['\.pyc', '\~$']
+let g:NERDTreeIgnore=['\.pyc', '\~$', '__pycache__']
 let g:NERDTreeChDirMode=2
 let g:NERDTreeMinimalUI=1
+
+nmap <F2> :NERDTreeToggle<CR>
+nmap <F3> :NERDTreeFind<CR>
 
 "colorscheme grb256
 "colorscheme hybrid
@@ -250,7 +254,8 @@ let g:ycm_min_num_identifier_candidate_chars = 4
 let g:ycm_extra_conf_globlist = ['~/repos/*']
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 let g:ycm_confirm_extra_conf = 1
-let g:ycm_server_python_interpreter = '/usr/bin/python3'
+let g:ycm_python_binary_path = 'python'
+" let g:ycm_server_python_interpreter = '/usr/bin/python3'
 " let g:ycm_server_use_vim_stdout = 1
 " let g:ycm_server_log_level = 'debug'
 
@@ -263,6 +268,18 @@ nnoremap <leader>v :YcmCompleter GoToDeclaration<CR>
 "                              editorconfig                               "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  Ack                                    "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if executable('ag')
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+endif
+
+nnoremap <leader>g :Ack <C-R><C-W><CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " EDITOR SETTINGS
 set ignorecase          " case insensitive searching
