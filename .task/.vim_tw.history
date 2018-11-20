@@ -1,0 +1,10 @@
+next		rc.report.next.columns:id,project,priority,due,start.active,entry.age,urgency,description.count rc.defaultheight=0
+next		rc.report.next.columns:id,project,priority,due,start.active,entry.age,urgency,description.truncated rc.defaultheight=0
+next		rc.report.next.columns:id,project,priority,due,start.active,entry.age,urgency,description.oneline rc.defaultheight=0
+next		rc.report.next.columns:id,project,priority,due,start.active,entry.age,urgency,description.desc rc.defaultheight=0
+next		rc.report.next.columns:id,project,priority,due,start.active,entry.age,urgency,description rc.defaultheight=0
+next		rc.report.next.columns:id,project,priority,due,start.active,entry.age,urgency,description.count rc.defaultheight=0
+next		rc.report.next.columns:id,project,priority,due,start.active,entry.age,urgency,description.truncated rc.defaultheight=0
+next		rc.report.next.columns:id,project,priority,due,start.active,entry.age,urgency,description.oneline rc.defaultheight=0
+next		rc.report.next.columns:id,project,priority,due,start.active,entry.age,urgency,description.desc rc.defaultheight=0
+next		rc.defaultheight=0

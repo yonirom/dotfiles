@@ -11,7 +11,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'Valloric/vim-valloric-colorscheme'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-"Plugin 'garbas/vim-snipmate'
+" Plugin 'garbas/vim-snipmate'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
@@ -22,7 +22,7 @@ Plugin 'L9'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tComment'
-"Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'rizzatti/dash.vim'
 Plugin 'kien/ctrlp.vim'
@@ -42,6 +42,10 @@ Plugin 'luochen1990/rainbow'
 Plugin 'ConradIrwin/vim-bracketed-paste'
 Plugin 'nathanalderson/yang.vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'farseer90718/vim-taskwarrior'
+" Plugin 'prabirshrestha/async.vim'
+" Plugin 'prabirshrestha/vim-lsp'
+" Plugin 'ajh17/vimcompletesme'
 
 call vundle#end()
 let g:colorscheme_switcher_define_mappings=0
@@ -94,10 +98,10 @@ set wildmode=longest,list " At command line, complete longest common string, the
 
 set backspace=indent,eol,start " more powerful backspacing
 
-set tabstop=2     " Set the default tabstop
+set tabstop=8     " Set the default tabstop
 set softtabstop=2
 set shiftwidth=2  " Set the default shift width for indents
-set expandtab     " Make tabs into spaces (set by tabstop)
+set noexpandtab   " Make tabs into spaces (set by tabstop)
 set shiftround    " makes indenting a multiple of shiftwidth
 set smarttab      " Smarter tab levels
 
@@ -243,7 +247,7 @@ let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚠'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
-let g:ale_linters = { 'python': ['mypy', 'flake8'], }
+let g:ale_linters = { 'python': ['mypy', 'flake8', 'pyre'], }
 let g:ale_python_mypy_options = '-s'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -251,7 +255,7 @@ let g:ale_python_mypy_options = '-s'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_min_num_identifier_candidate_chars = 4
-let g:ycm_extra_conf_globlist = ['~/repos/*']
+let g:ycm_extra_conf_globlist = ['~/cheetah/*']
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 let g:ycm_confirm_extra_conf = 1
 let g:ycm_python_binary_path = 'python'
@@ -277,7 +281,8 @@ if executable('ag')
   let g:ackprg = 'ag --nogroup --nocolor --column'
 endif
 
-nnoremap <leader>g :Ack <C-R><C-W><CR>
+nnoremap <Leader>a :Ack!<Space>
+nnoremap <leader>g :Ack! <C-R><C-W><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -314,3 +319,18 @@ set guioptions-=M
 " this makes sure that shell scripts are highlighted
 " as bash scripts and not sh scripts
 let g:is_posix = 1
+
+" if executable('clangd')
+"     augroup lsp_clangd
+"         autocmd!
+"         autocmd User lsp_setup call lsp#register_server({
+"                     \ 'name': 'clangd',
+"                     \ 'cmd': {server_info->['clangd']},
+"                     \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+"                     \ })
+"         autocmd FileType c setlocal omnifunc=lsp#complete
+"         autocmd FileType cpp setlocal omnifunc=lsp#complete
+"         autocmd FileType objc setlocal omnifunc=lsp#complete
+"         autocmd FileType objcpp setlocal omnifunc=lsp#complete
+"     augroup end
+" endif
