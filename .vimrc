@@ -46,6 +46,10 @@ Plugin 'farseer90718/vim-taskwarrior'
 " Plugin 'prabirshrestha/async.vim'
 " Plugin 'prabirshrestha/vim-lsp'
 " Plugin 'ajh17/vimcompletesme'
+Plugin 'sjl/splice.vim'
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'skywind3000/gutentags_plus'
+
 
 call vundle#end()
 let g:colorscheme_switcher_define_mappings=0
@@ -173,8 +177,8 @@ comm! W exec 'w !sudo tee % > /dev/null' | e!
 au BufRead,BufNewFile {COMMIT_EDITMSG}                                set ft=gitcommit
 
 " Close if only NERDTree left
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-autocmd BufEnter * lcd %:p:h
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufEnter * silent! lcd %:p:h
 
 " Automatically delete trailing DOS-returns and whitespace on file open and
 " write.
@@ -206,7 +210,7 @@ map <C-l> <C-w>l
 let g:UltiSnipsExpandTrigger="<c-Space>"
 
 let g:NERDTreeIgnore=['\.pyc', '\~$', '__pycache__']
-let g:NERDTreeChDirMode=2
+let g:NERDTreeChDirMode=1
 let g:NERDTreeMinimalUI=1
 
 nmap <F2> :NERDTreeToggle<CR>
@@ -229,6 +233,8 @@ let g:airline#extensions#bufferline#enabled = 1
 "                                  ctrl-p                                 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_max_files = 0
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                syntastic                                "
@@ -283,6 +289,28 @@ endif
 
 nnoremap <Leader>a :Ack!<Space>
 nnoremap <leader>g :Ack! <C-R><C-W><CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                      Gutentags / Gutentags plus                         "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" enable gtags module
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+
+" generate datebases in my cache directory, prevent gtags files polluting my project
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+
+" change focus to quickfix window after search
+let g:gutentags_plus_switch = 1
+
+" forbid gutentags adding gtags databases
+let g:gutentags_auto_add_gtags_cscope = 0
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Vim Rooter                                  "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rooter_manual_only = 1
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
