@@ -226,9 +226,15 @@ inoremap ˚ <C-o>k
 inoremap ¬ <C-o>l
 
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  airline                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'tomorrow'
 let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#gutentags#enabled = 1
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  ctrl-p                                 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
