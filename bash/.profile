@@ -10,9 +10,8 @@ fi
 
 # User specific aliases and functions
 if [ -f ~/.git-prompt.sh ]; then
-    . ~/.git_prompt.sh
+    . ~/.git-prompt.sh
 fi
-
 
 # Set Git shell prompt variables
 GIT_PS1_SHOWDIRTYSTATE=1
@@ -34,7 +33,6 @@ function did() {
   fi
  }
  export -f did
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # save history after each command
 shopt -s histappend
