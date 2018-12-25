@@ -24,6 +24,10 @@ if [ -f ~/.bashrc.prompt ]; then
     . ~/.bashrc.prompt
 fi
 
+# save history after each command
+shopt -s histappend
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
 # did a simple task logger
 function did() {
   if [ "$*" == "" ]; then
