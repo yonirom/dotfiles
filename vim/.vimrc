@@ -49,6 +49,10 @@ Plugin 'farseer90718/vim-taskwarrior'
 Plugin 'sjl/splice.vim'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'skywind3000/gutentags_plus'
+Plugin 'RRethy/vim-illuminate'
+Plugin 'Yggdroot/indentLine'
+Plugin 'ayu-theme/ayu-vim'
+Plugin 'terryma/vim-smooth-scroll'
 
 
 call vundle#end()
@@ -168,6 +172,11 @@ if has("gui_running")
 endif
 " " }}}
 
+" Set termguicolors to work within tmux: https://github.com/vim/vim/issues/993
+let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
+set termguicolors     " enable true colors support
+
 " Command and Auto commands " {{{
 " Sudo write
 comm! W exec 'w !sudo tee % > /dev/null' | e!
@@ -219,7 +228,9 @@ nmap <F3> :NERDTreeFind<CR>
 "colorscheme grb256
 "colorscheme hybrid
 "colorscheme codeschool
-colorscheme molokai
+"colorscheme molokai
+let ayucolor="mirage"   " for dark version of theme
+colorscheme ayu
 inoremap ˙ <C-o>h
 inoremap ∆ <C-o>j
 inoremap ˚ <C-o>k
@@ -296,6 +307,27 @@ endif
 nnoremap <Leader>a :Ack!<Space>
 nnoremap <leader>g :Ack! <C-R><C-W><CR>
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  smoothscoll                            "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  indentLine                             "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:indentLine_char = '┆'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  Illuminate                             "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+hi link illuminatedWord Visual
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                      Gutentags / Gutentags plus                         "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -311,6 +343,11 @@ let g:gutentags_plus_switch = 1
 " forbid gutentags adding gtags databases
 let g:gutentags_auto_add_gtags_cscope = 0
 
+" enable gutentag debugging
+let g:gutentags_define_advanced_commands = 1
+
+" ctags exclude pattern
+let g:gutentags_ctags_exclude = ['.pyc']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Vim Rooter                                  "
