@@ -2,6 +2,9 @@ export LC_CTYPE="en_US.UTF-8"
 alias ls='ls -G'
 alias vi='vim'
 
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
 if [ -f ~/.ssh-find-agent.sh ]; then
     . ~/.ssh-find-agent.sh
 fi

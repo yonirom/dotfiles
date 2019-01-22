@@ -160,6 +160,7 @@ set foldlevelstart=99                            " all folds open by default
 
 set splitbelow
 set splitright
+set wildignore=*.pyc,*.o,__pycache__ " Wildcard file ignore
 
 " "}}}
 
@@ -311,10 +312,10 @@ nnoremap <leader>g :Ack! <C-R><C-W><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  smoothscoll                            "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+nnoremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+nnoremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+nnoremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+nnoremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  indentLine                             "
@@ -345,9 +346,6 @@ let g:gutentags_auto_add_gtags_cscope = 0
 
 " enable gutentag debugging
 let g:gutentags_define_advanced_commands = 1
-
-" ctags exclude pattern
-let g:gutentags_ctags_exclude = ['.pyc']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Vim Rooter                                  "
