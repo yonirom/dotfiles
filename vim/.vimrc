@@ -53,6 +53,7 @@ Plugin 'RRethy/vim-illuminate'
 Plugin 'Yggdroot/indentLine'
 Plugin 'ayu-theme/ayu-vim'
 Plugin 'terryma/vim-smooth-scroll'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 
 call vundle#end()
@@ -253,6 +254,7 @@ let g:airline#extensions#gutentags#enabled = 1
 let g:ctrlp_max_files = 0
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+nnoremap <C-_> :CtrlPBuffer<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                syntastic                                "
