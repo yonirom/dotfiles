@@ -54,6 +54,7 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'ayu-theme/ayu-vim'
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'airblade/vim-gitgutter'
 
 
 call vundle#end()
