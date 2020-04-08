@@ -55,7 +55,8 @@ Plugin 'ayu-theme/ayu-vim'
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
-
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
 
 call vundle#end()
 let g:colorscheme_switcher_define_mappings=0
@@ -274,8 +275,7 @@ let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚠'
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
-let g:ale_linters = { 'python': ['mypy', 'flake8', 'pyre'], }
-let g:ale_python_mypy_options = '-s'
+let g:ale_linters = { 'python': ['mypy', 'flake8', 'pyre', 'pylama'], }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              YouCompleteMe                              "
@@ -285,7 +285,7 @@ let g:ycm_min_num_identifier_candidate_chars = 4
 let g:ycm_extra_conf_globlist = ['~/cheetah/*']
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 let g:ycm_confirm_extra_conf = 1
-let g:ycm_python_binary_path = 'python'
+let g:ycm_use_clangd = 0
 " let g:ycm_server_python_interpreter = '/usr/bin/python3'
 " let g:ycm_server_use_vim_stdout = 1
 " let g:ycm_server_log_level = 'debug'
