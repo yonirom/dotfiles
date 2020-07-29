@@ -25,7 +25,8 @@ bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec i3-dmenu-desktop
+# bindsym $mod+d exec i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id rofi -show drun
 
 # change focus
 bindsym $mod+h focus left
@@ -75,7 +76,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindcode $mod+d focus child
+bindcode $mod+d focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1: term
@@ -109,7 +110,7 @@ bindsym $mod+Shift+R restart
 bindsym $mod+Shift+E exec pkill gnome-session
 
 # hide border
-hide_edge_borders none
+# hide_edge_borders none
 
 
 # resize window (you can also use the mouse for that)
@@ -145,7 +146,7 @@ mode "$mode_system" {
     bindsym s exec --no-startup-id ~/.i3/i3exit suspend, mode "default"
     bindsym h exec --no-startup-id ~/.i3/i3exit hibernate, mode "default"
     bindsym r exec --no-startup-id ~/.i3/i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id ~/.i3/i3exit shutdown, mode "default"  
+    bindsym Shift+s exec --no-startup-id ~/.i3/i3exit shutdown, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -154,11 +155,19 @@ mode "$mode_system" {
 bindsym $mod+Pause mode "$mode_system"
 
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
 bar {
-#        status_command i3status
-        status_command py3status -c ~/.i3/i3status.conf -i ~/.i3/py3status-modules
+    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    position bottom
+    status_command /usr/bin/i3status-rs ~/.i3/status.toml
+    colors {
+        separator #666666
+        background #000000
+        statusline #dddddd
+        focused_workspace #A27647 #A27647 #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
 }
 
 # Volume Control With sigusr - I currently have an older version
@@ -166,16 +175,23 @@ bar {
 #bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -5% && killall -USR1 i3status
 #bindsym XF86AudioMute exec --no-startup-id pacmd list-sinks | grep 'muted: no' && pacmd set-sink-mute 0 1 || pacmd set-sink-mute 0 0
 
-# Volume Control 
+# i3-gaps
+gaps inner 4
+#gaps outer 30
+smart_gaps on
+
+# for_window [class="^.*"] border pixel 1
+
+# Volume Control
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 -- +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -5%
 bindsym XF86AudioMute exec --no-startup-id pacmd list-sinks | grep 'muted: no' && pacmd set-sink-mute 0 1 || pacmd set-sink-mute 0 0
 
-exec --no-startup-id setxkbmap -option grp:switch,grp:alt_shift_toggle us,il
+# exec --no-startup-id setxkbmap -option grp:switch,grp:alt_shift_toggle us,il
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id /usr/bin/xautolock -time 5 -locker /usr/bin/i3-Lock
+exec --no-startup-id /usr/bin/xautolock -time 5 -locker "/home/meep/.i3/i3exit suspend"
 exec --no-startup-id xmodmap ~/.Xmodmap
-exec --no-startup-id xrandr | grep 'HDMI1 connected' > /dev/null && xrandr --output LVDS1 --off --output HDMI1 --auto
+exec --no-startup-id ~/.fehbg
 
 #Lock
 bindsym mod1+control+l exec ~/.i3/i3exit lock

@@ -76,7 +76,7 @@ set autoread
 set background=dark
 
 set timeoutlen=250     " Time to wait after ESC (default causes an annoying delay)
-set clipboard+=unnamed " Yanks go on clipboard instead.
+set clipboard+=unnamedplus " Yanks go on clipboard instead.
 set pastetoggle=<F10>  " toggle between paste and normal: for 'safer' pasting from keyboard
 set tags=./tags;$HOME  " walk directory tree upto $HOME looking for tags
 
@@ -177,9 +177,10 @@ endif
 " " }}}
 
 " Set termguicolors to work within tmux: https://github.com/vim/vim/issues/993
-let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
-let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
-set termguicolors     " enable true colors support
+"let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+"let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
+" set termguicolors     " enable true colors support
+set t_Co=256
 
 " Command and Auto commands " {{{
 " Sudo write
@@ -232,9 +233,9 @@ nmap <F3> :NERDTreeFind<CR>
 "colorscheme grb256
 "colorscheme hybrid
 "colorscheme codeschool
-"colorscheme molokai
+colorscheme molokai
 let ayucolor="mirage"   " for dark version of theme
-colorscheme ayu
+" colorscheme ayu
 inoremap ˙ <C-o>h
 inoremap ∆ <C-o>j
 inoremap ˚ <C-o>k
@@ -375,8 +376,8 @@ set viminfo='20,\"500   " remember copy registers after quitting in the .viminfo
                         " file -- 20 jump links, regs up to 500 lines'
 
 
-set mouse=a                 " enables the mouse in all modes
-set mousemodel=popup_setpos " Right-click on selection should bring up a menu
+"set mouse=a                 " enables the mouse in all modes
+"set mousemodel=popup_setpos " Right-click on selection should bring up a menu
 
 " With this, the gui (gvim and macvim) now doesn't have the toolbar, the left
 " and right scrollbars and the menu.

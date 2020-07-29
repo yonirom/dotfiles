@@ -1,59 +1,59 @@
 !-------------------------------------------------------------------------------
 ! Xft settings
 !-------------------------------------------------------------------------------
- 
+
 Xft.dpi:                    96
 Xft.antialias:              false
 Xft.rgba:                   rgb
 Xft.hinting:                true
 Xft.hintstyle:              hintslight
- 
+
 !-------------------------------------------------------------------------------
-! URxvt settings
+! x-terminal-emulator settings
 ! Colours lifted from Solarized (http://ethanschoonover.com/solarized)
 ! More info at:
 ! http://pod.tst.eu/http://cvs.schmorp.de/rxvt-unicode/doc/rxvt.1.pod
 !-------------------------------------------------------------------------------
- 
-URxvt.depth:                32
-URxvt.geometry:             90x30
-URxvt.transparent:          false
-URxvt.fading:               0
-! URxvt.urgentOnBell:         true
-! URxvt.visualBell:           true
-URxvt.loginShell:           true
-URxvt.saveLines:            64000
-URxvt.internalBorder:       3
-URxvt.lineSpace:            0
-URxvt.termName:             xterm-256color
+
+x-terminal-emulator.depth:                32
+x-terminal-emulator.geometry:             90x30
+x-terminal-emulator.transparent:          false
+x-terminal-emulator.fading:               0
+! x-terminal-emulator.urgentOnBell:         true
+! x-terminal-emulator.visualBell:           true
+x-terminal-emulator.loginShell:           true
+x-terminal-emulator.saveLines:            64000
+x-terminal-emulator.internalBorder:       3
+x-terminal-emulator.lineSpace:            0
+x-terminal-emulator.termName:             xterm-256color
 ! Fix Home/End
-URxvt*keysym.Home: \033[1~
-URxvt*keysym.End: \033[4~
- 
+x-terminal-emulator*keysym.Home: \033[1~
+x-terminal-emulator*keysym.End: \033[4~
+
 ! Fonts
-URxvt.allow_bold:           false
-URxvt.font:                 -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-! URxvt*font: xft:Monospace:pixelsize=11
- 
+x-terminal-emulator.allow_bold:           false
+x-terminal-emulator.font:                 -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+! x-terminal-emulator*font: xft:Monospace:pixelsize=11
+
 ! Scrollbar
-URxvt.scrollStyle:          rxvt
-URxvt.scrollBar:            false
- 
+x-terminal-emulator.scrollStyle:          rxvt
+x-terminal-emulator.scrollBar:            false
+
 ! Perl extensions
-URxvt.perl-ext-common:      default,matcher
-URxvt.matcher.button:       1
-URxvt.urlLauncher:          google-chrome
- 
+x-terminal-emulator.perl-ext-common:      default,matcher
+x-terminal-emulator.matcher.button:       1
+x-terminal-emulator.urlLauncher:          google-chrome
+
 ! Cursor
-URxvt.cursorBlink:          true
-URxvt.cursorColor:          #657b83
-URxvt.cursorUnderline:      false
- 
+x-terminal-emulator.cursorBlink:          true
+x-terminal-emulator.cursorColor:          #657b83
+x-terminal-emulator.cursorUnderline:      false
+
 ! Pointer
-URxvt.pointerBlank:         true
- 
-urxvt*foreground: #a2a2a2
-urxvt*background: #202020
+x-terminal-emulator.pointerBlank:         true
+
+x-terminal-emulator*foreground: #a2a2a2
+x-terminal-emulator*background: #202020
 
 ! Normal
 ! color0    black
@@ -65,14 +65,14 @@ urxvt*background: #202020
 ! color6    cyan
 ! color7    white
 
-urxvt*color0:    #6c6c6c
-urxvt*color1:    #e9897c
-urxvt*color2:    #b6e77d
-urxvt*color3:    #ecebbe
-urxvt*color4:    #a9cdeb
-urxvt*color5:    #ea96eb
-urxvt*color6:    #c9caec
-urxvt*color7:    #f2f2f2
+x-terminal-emulator*color0:    #6c6c6c
+x-terminal-emulator*color1:    #e9897c
+x-terminal-emulator*color2:    #b6e77d
+x-terminal-emulator*color3:    #ecebbe
+x-terminal-emulator*color4:    #a9cdeb
+x-terminal-emulator*color5:    #ea96eb
+x-terminal-emulator*color6:    #c9caec
+x-terminal-emulator*color7:    #f2f2f2
 
 ! Light
 ! color8    black
@@ -84,13 +84,13 @@ urxvt*color7:    #f2f2f2
 ! color14    cyan
 ! color15    white
 
-urxvt*color8:    #747474
-urxvt*color9:    #f99286
-urxvt*color10:    #c3f786
-urxvt*color11:    #fcfbcc
-urxvt*color12:    #b6defb
-urxvt*color13:    #fba1fb
-urxvt*color14:    #d7d9fc
-urxvt*color15:    #e2e2e2
+x-terminal-emulator*color8:    #747474
+x-terminal-emulator*color9:    #f99286
+x-terminal-emulator*color10:    #c3f786
+x-terminal-emulator*color11:    #fcfbcc
+x-terminal-emulator*color12:    #b6defb
+x-terminal-emulator*color13:    #fba1fb
+x-terminal-emulator*color14:    #d7d9fc
+x-terminal-emulator*color15:    #e2e2e2
 
-URxvt.print-pipe: cat > $(TMPDIR=$HOME mktemp urxvt.XXXXXX)
+x-terminal-emulator.print-pipe: cat > $(TMPDIR=$HOME mktemp x-terminal-emulator.XXXXXX)

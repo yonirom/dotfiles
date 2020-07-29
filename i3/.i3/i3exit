@@ -11,10 +11,10 @@ case "$1" in
         lock
         ;;
     logout)
-        pkill gnome-session
+        i3-msg exit
         ;;
     suspend)
-        lock && pmi action suspend
+        lock && systemctl suspend
         ;;
     hibernate)
         lock && pmi action hibernate
