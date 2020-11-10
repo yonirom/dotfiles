@@ -12,13 +12,14 @@
 set $mod mod4
 
 # font for window titles. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font Fixed
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -26,7 +27,7 @@ bindsym $mod+Shift+Q kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec i3-dmenu-desktop
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec rofi -show drun
 
 # change focus
 bindsym $mod+h focus left
@@ -70,13 +71,10 @@ bindsym $mod+e layout default
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
-
-# focus the child container
-bindcode $mod+d focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1: term
@@ -106,8 +104,6 @@ bindsym $mod+Shift+parenright move container to workspace 10
 bindsym $mod+Shift+C reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+R restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+E exec pkill gnome-session
 
 # hide border
 # hide_edge_borders none
@@ -139,26 +135,24 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+set $mode_system System (l) lock, (e) logout, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id ~/.i3/i3exit lock, mode "default"
-    bindsym e exec --no-startup-id ~/.i3/i3exit logout, mode "default"
-    bindsym s exec --no-startup-id ~/.i3/i3exit suspend, mode "default"
-    bindsym h exec --no-startup-id ~/.i3/i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id ~/.i3/i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id ~/.i3/i3exit shutdown, mode "default"
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Pause mode "$mode_system"
-
+bindsym $mod+Q mode "$mode_system"
 
 bar {
-    font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
     position bottom
-    status_command /usr/bin/i3status-rs ~/.i3/status.toml
+    status_command /usr/bin/i3status-rs
     colors {
         separator #666666
         background #000000
@@ -180,24 +174,31 @@ gaps inner 4
 #gaps outer 30
 smart_gaps on
 
-# for_window [class="^.*"] border pixel 1
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
 
 # Volume Control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 -- +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pacmd list-sinks | grep 'muted: no' && pacmd set-sink-mute 0 1 || pacmd set-sink-mute 0 0
+bindsym XF86MonBrightnessUp exec --no-startup-id /usr/bin/brightnessctl -q s  +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id /usr/bin/brightnessctl -q s  5%-
 
-# exec --no-startup-id setxkbmap -option grp:switch,grp:alt_shift_toggle us,il
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id /usr/bin/xautolock -time 5 -locker "/home/meep/.i3/i3exit suspend"
-exec --no-startup-id xmodmap ~/.Xmodmap
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec --no-startup-id /usr/bin/xautolock -time 5 -locker "/home/meep/.i3/i3exit suspend"
+# exec --no-startup-id /usr/bin/nm-applet
 exec --no-startup-id ~/.fehbg
+# exec --no-startup-id /usr/bin/alsactl --file ~/.config/alsa.state restore 0
+exec --no-startup-id xmodmap ~/.Xmodmap
+exec --no-startup-id setxkbmap -option grp:switch,grp:alt_shift_toggle us,il
 
-#Lock
-bindsym mod1+control+l exec ~/.i3/i3exit lock
 
-exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --foreground --components=pkcs11,secrets,gpg,ssh &
+# exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --foreground --components=pkcs11,secrets,gpg,ssh &
 
+# for_window [class="^.*"] border pixel 1
 #assign [class="Komodo"] 1
 #assign [class="Sublime_text"] 1
 #assign [class="chromium-browser"] 3
@@ -207,17 +208,12 @@ exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --foreground --compon
 #assign [class="empathy"] 6
 #assign [class="Empathy"] 6
 
-for_window [class="Gtkdialog"] floating enable
-for_window [class="Gnome-control-center"] floating enable
-for_window [class="Update-manager"] floating enable
-for_window [class="Gcr-prompter"] floating enable
-for_window [class="Gnome-keyring-prompt-3"] floating enable
-for_window [class="Gnome-system-monitor"] floating enable
-for_window [title="Preferences"] floating enable
-for_window [class="VirtualBox" instance="Qt-subapplication" title="(?<^Oracle VM VirtualBox Manager)"] floating enable
+# for_window [class="Gtkdialog"] floating enable
+# for_window [class="Gnome-control-center"] floating enable
+# for_window [class="Update-manager"] floating enable
+# for_window [class="Gcr-prompter"] floating enable
+# for_window [class="Gnome-keyring-prompt-3"] floating enable
+# for_window [class="Gnome-system-monitor"] floating enable
+# for_window [title="Preferences"] floating enable
+# for_window [class="VirtualBox" instance="Qt-subapplication" title="(?<^Oracle VM VirtualBox Manager)"] floating enable
 
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# Show the first scratchpad window
-bindsym $mod+minus scratchpad show

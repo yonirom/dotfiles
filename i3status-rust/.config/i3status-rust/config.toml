@@ -7,9 +7,9 @@ icons = "none"
 # interval = 10
 # format = "{max}° max, {average}° avg"
 
-[[block]]
-block = "focused_window"
-max_width = 21
+# [[block]]
+# block = "focused_window"
+# max_width = 21
 
 [[block]]
 block = "keyboard_layout"
@@ -33,25 +33,28 @@ format_swap = "{SUp}%"
 [[block]]
 block = "cpu"
 interval = 1
-frequency = true
 
 [[block]]
 block = "load"
 interval = 1
-format = "{1m}"
+format = "{5m}"
 
 [[block]]
-block = "net"
-device = "enp7s0"
-ssid = true
-ip = false
-speed_up = false
-graph_down = true
-interval = 5
+block = "networkmanager"
+on_click = "/usr/bin/networkmanager_dmenu"
+max_ssid_width = 8
+ap_format = "{ssid} {strength}"
+device_format = "{ap}"
 
 [[block]]
 block = "sound"
 step_width = 5
+
+[[block]]
+block = "battery"
+interval = 10
+format = "{percentage}% {time}"
+device = "cw2015-battery"
 
 [[block]]
 block = "time"

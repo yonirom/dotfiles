@@ -42,7 +42,7 @@ Plugin 'luochen1990/rainbow'
 Plugin 'ConradIrwin/vim-bracketed-paste'
 Plugin 'nathanalderson/yang.vim'
 Plugin 'mileszs/ack.vim'
-Plugin 'farseer90718/vim-taskwarrior'
+" Plugin 'farseer90718/vim-taskwarrior'
 " Plugin 'prabirshrestha/async.vim'
 " Plugin 'prabirshrestha/vim-lsp'
 " Plugin 'ajh17/vimcompletesme'
@@ -316,10 +316,10 @@ nnoremap <leader>g :Ack! <C-R><C-W><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  smoothscoll                            "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-nnoremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-nnoremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-nnoremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+"nnoremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+"nnoremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+"nnoremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+"nnoremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  indentLine                             "
