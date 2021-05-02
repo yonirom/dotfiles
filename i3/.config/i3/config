@@ -192,9 +192,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id /usr/bin/brightnessctl -q s  
 # exec --no-startup-id /usr/bin/nm-applet
 exec --no-startup-id ~/.fehbg
 # exec --no-startup-id /usr/bin/alsactl --file ~/.config/alsa.state restore 0
-exec --no-startup-id setxkbmap -option grp:switch,grp:alt_shift_toggle us,il
-
-exec --no-startup-id /usr/bin/sleep 5; /usr/bin/xmodmap ~/.Xmodmap
+exec --no-startup-id setxkbmap -option grp:switch,grp:alt_shift_toggle us,il && /usr/bin/xmodmap ~/.Xmodmap
 
 
 # exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --foreground --components=pkcs11,secrets,gpg,ssh &
