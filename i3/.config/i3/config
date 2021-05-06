@@ -22,12 +22,13 @@ floating_modifier $mod
 bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
-bindsym $mod+Shift+Q kill
+bindsym $mod+Q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec i3-dmenu-desktop
 bindsym $mod+d exec rofi -show drun
+bindsym $mod+Shift+v exec roficlip
 
 # change focus
 bindsym $mod+h focus left
@@ -54,10 +55,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+Shift+v split h
+bindsym $mod+shift+bar split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+minus split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
@@ -135,7 +136,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $mode_system System (l) lock, (e) logout, (r) reboot, (Shift+s) shutdown
+set $mode_system System (l) lock, (e) logout, (r) reboot, (s) suspend, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
     bindsym e exec --no-startup-id i3exit logout, mode "default"
@@ -147,7 +148,7 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Q mode "$mode_system"
+bindsym $mod+Shift+Q mode "$mode_system"
 
 bar {
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -175,10 +176,10 @@ gaps inner 4
 smart_gaps on
 
 # Make the currently focused window a scratchpad
-bindsym $mod+Shift+minus move scratchpad
+# bindsym $mod+Shift+minus move scratchpad
 
 # Show the first scratchpad window
-bindsym $mod+minus scratchpad show
+# bindsym $mod+minus scratchpad show
 
 # Volume Control
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
@@ -191,6 +192,8 @@ bindsym XF86MonBrightnessDown exec --no-startup-id /usr/bin/brightnessctl -q s  
 # exec --no-startup-id /usr/bin/xautolock -time 5 -locker "/home/meep/.i3/i3exit suspend"
 # exec --no-startup-id /usr/bin/nm-applet
 exec --no-startup-id ~/.fehbg
+exec --no-startup-id clipster -d
+exec --no-startup-id light-locker
 # exec --no-startup-id /usr/bin/alsactl --file ~/.config/alsa.state restore 0
 exec --no-startup-id setxkbmap -option grp:switch,grp:alt_shift_toggle us,il && /usr/bin/xmodmap ~/.Xmodmap
 
