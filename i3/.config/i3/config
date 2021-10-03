@@ -182,8 +182,8 @@ smart_gaps on
 # bindsym $mod+minus scratchpad show
 
 # Volume Control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset DAC 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset DAC 5%-
 bindsym XF86AudioMute exec --no-startup-id pacmd list-sinks | grep 'muted: no' && pacmd set-sink-mute 0 1 || pacmd set-sink-mute 0 0
 bindsym XF86MonBrightnessUp exec --no-startup-id /usr/bin/brightnessctl -q s  +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id /usr/bin/brightnessctl -q s  5%-

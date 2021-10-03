@@ -1,5 +1,9 @@
 theme = "slick"
-icons = "none"
+
+[icons]
+name = "none"
+[icons.overrides]
+time = ""
 
 # [[block]]
 # block = "temperature"
@@ -27,8 +31,7 @@ interval = 20
 [[block]]
 block = "memory"
 display_type = "memory"
-format_mem = "{Mup}%"
-format_swap = "{SUp}%"
+format_mem = "{mem_used_percents}"
 
 [[block]]
 block = "cpu"
@@ -42,21 +45,17 @@ format = "{5m}"
 [[block]]
 block = "networkmanager"
 on_click = "/usr/bin/networkmanager_dmenu"
-max_ssid_width = 8
+# max_ssid_width = 8
 ap_format = "{ssid} {strength}"
 device_format = "{ap}"
 
 [[block]]
-block = "sound"
-step_width = 5
-
-[[block]]
 block = "battery"
 interval = 10
-format = "{percentage}% {time}"
+format = "{percentage} {time}"
 device = "cw2015-battery"
 
 [[block]]
 block = "time"
 interval = 60
-format = "%m/%d %a %R"
+#format = "%m/%d %a %R"
