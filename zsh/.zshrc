@@ -22,6 +22,6 @@ setopt prompt_subst
 
 PS1='%n@%m$vcs_info_msg_0_ %F{yellow}%~%f%# '
 
-alias ls='ls --color'
+alias ls='ls -G'
 alias vi='vim'
 
