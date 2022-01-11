@@ -76,7 +76,7 @@ set autoread
 set background=dark
 
 set timeoutlen=250     " Time to wait after ESC (default causes an annoying delay)
-set clipboard+=unnamedplus " Yanks go on clipboard instead.
+" set clipboard+=unnamedplus " Yanks go on clipboard instead.
 set pastetoggle=<F10>  " toggle between paste and normal: for 'safer' pasting from keyboard
 set tags=./tags;$HOME  " walk directory tree upto $HOME looking for tags
 
