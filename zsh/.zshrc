@@ -1,9 +1,19 @@
 export LC_CTYPE="en_US.UTF-8"
 
+SECRETS_FILE=${HOME}/.secrets.sh
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+
+if [ -f ${SECRETS_FILE} ]; then
+  if [ $(stat -f "%OLp" .secrets.sh | sed -e 's/..\(.\)/\1/') -gt 0 ]; then
+    echo "WARNING: Secrets file ${SECRETS_FILE} is world readable!!!"
+  fi
+  source  ${SECRETS_FILE}
+fi
+
 setopt nomatch
 unsetopt autocd beep extendedglob notify
 bindkey -e
