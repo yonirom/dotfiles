@@ -1,6 +1,5 @@
 configuration {
 	font: "Fixed 10";
-	theme: "lb";
 	terminal: "alacritty";
 /*	modi: "window,run,ssh";*/
 /*	width: 50;*/
@@ -143,3 +142,4 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
+@theme "lb"
