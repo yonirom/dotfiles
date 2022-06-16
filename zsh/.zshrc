@@ -1,4 +1,5 @@
 export LC_CTYPE="en_US.UTF-8"
+export FPATH=/opt/homebrew/share/zsh/site-functions/:$FPATH
 
 SECRETS_FILE=${HOME}/.secrets.sh
 
@@ -35,3 +36,9 @@ PS1='%n@%m$vcs_info_msg_0_ %F{yellow}%~%f%# '
 alias ls='ls -G'
 alias vi='vim'
 
+export PATH=/opt/homebrew/opt/python@3.9/libexec/bin/:/opt/homebrew/bin:$PATH
+
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
