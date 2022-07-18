@@ -9,9 +9,6 @@ HISTSIZE=1000
 SAVEHIST=1000
 
 if [ -f ${SECRETS_FILE} ]; then
-  if [ $(stat -f "%OLp" .secrets.sh | sed -e 's/..\(.\)/\1/') -gt 0 ]; then
-    echo "WARNING: Secrets file ${SECRETS_FILE} is world readable!!!"
-  fi
   source  ${SECRETS_FILE}
 fi
 

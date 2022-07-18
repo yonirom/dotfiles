@@ -5,7 +5,7 @@ filetype off
 " Plugs " {{{
 call plug#begin()
 
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 Plug 'Valloric/vim-valloric-colorscheme'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -30,7 +30,7 @@ Plug 'torrancew/vim-openscad'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'burnettk/vim-angular'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-colorscheme-switcher'
@@ -55,6 +55,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 let g:colorscheme_switcher_define_mappings=0
@@ -219,7 +221,10 @@ map <C-l> <C-w>l
 
 ":imap <C-J> <Plug>snipMateNextOrTrigger
 ":smap <C-J> <Plug>snipMateNextOrTrigger
-let g:UltiSnipsExpandTrigger="<c-Space>"
+"
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackardTrigger="<s-tab>"
 
 let g:NERDTreeIgnore=['\.pyc', '\~$', '__pycache__']
 let g:NERDTreeChDirMode=1
@@ -231,7 +236,8 @@ nmap <F3> :NERDTreeFind<CR>
 "colorscheme grb256
 "colorscheme hybrid
 "colorscheme codeschool
-colorscheme molokai
+"colorscheme molokai
+colorscheme nord
 let ayucolor="mirage"   " for dark version of theme
 " colorscheme ayu
 inoremap ˙ <C-o>h
@@ -256,6 +262,14 @@ let g:ctrlp_max_files = 0
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 nnoremap <C-_> :CtrlPBuffer<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   coc                                   "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                syntastic                                "
