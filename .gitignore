@@ -1,3 +1,3 @@
 taskwarrior/.task/*.data
 .DS_Store
-tmux/.tmux/plugins/
+# tmux/.tmux/plugins/
